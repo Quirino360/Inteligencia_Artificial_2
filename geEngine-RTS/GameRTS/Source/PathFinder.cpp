@@ -66,14 +66,14 @@ bool PathFinder::step(PathNode node, RTSTiledMap* tiledMap)
   for (uint8 i = 0; i < connections.size(); i++)
   {
 
-    PathNode nextNode = PathNode(node + connections[i].position, false);
+    PathNode nextNode = PathNode(node.position + connections[i].position, false);
 
     if (((nextNode.position.x >= 0) && (nextNode.position.x < tiledMap->getMapSize().x) &&
-         (nextNode.position.position.y >= 0) && (nextNode.position.y < tiledMap->getMapSize().y)) &&
+         (nextNode.position.y >= 0) && (nextNode.position.y < tiledMap->getMapSize().y)) &&
          (tiledMap->getType(nextNode.position.x, nextNode.position.y) != TERRAIN_TYPE::E::kObstacle))
     {
        // checar que sea el nodo que buscamos
-       if (tiledMap == targetNode.position)
+       if (nextNode.position == targetNode.position)
        {
 
          nextNode.isExplored = true;
@@ -99,7 +99,7 @@ bool PathFinder::step(PathNode node, RTSTiledMap* tiledMap)
   node.isNodesExplored = true;
 
   
-  for (uint16  = 0, i < currentNodes.size(), i++)
+  for (geEngineSDK::uint16 i = 0; i < currentNodes.size(); i++)
   {
     // escoger el siguiente nodo
     if (currentNodes[i].isNodesExplored == false)
@@ -110,7 +110,7 @@ bool PathFinder::step(PathNode node, RTSTiledMap* tiledMap)
     }
   }
 
-  // return false; 
+  return false; 
 }
 
 // explorar los nodos

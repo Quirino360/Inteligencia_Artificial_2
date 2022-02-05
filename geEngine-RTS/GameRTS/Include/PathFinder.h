@@ -70,7 +70,7 @@ private:
 
   PathNode targetNode;
 
-  uint16 nextNodeID;
+  geEngineSDK::uint16 nextNodeID;
 
 
 
